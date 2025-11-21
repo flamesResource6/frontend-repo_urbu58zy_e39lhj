@@ -1,71 +1,45 @@
+import { useState } from 'react'
+import Header from './components/Header'
+import Discover from './components/Discover'
+import Guides from './components/Guides'
+import Businesses from './components/Businesses'
+import Bookings from './components/Bookings'
+
 function App() {
+  const [tab, setTab] = useState('discover')
+
   return (
-    <div className="min-h-screen bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900">
-      {/* Subtle pattern overlay */}
-      <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_50%,rgba(59,130,246,0.05),transparent_50%)]"></div>
+    <div className="min-h-screen bg-gray-50">
+      <Header active={tab} onChange={setTab} />
 
-      <div className="relative min-h-screen flex items-center justify-center p-8">
-        <div className="max-w-2xl w-full">
-          {/* Header with Flames icon */}
-          <div className="text-center mb-12">
-            <div className="inline-flex items-center justify-center mb-6">
-              <img
-                src="/flame-icon.svg"
-                alt="Flames"
-                className="w-24 h-24 drop-shadow-[0_0_25px_rgba(59,130,246,0.5)]"
-              />
-            </div>
-
-            <h1 className="text-5xl font-bold text-white mb-4 tracking-tight">
-              Flames Blue
-            </h1>
-
-            <p className="text-xl text-blue-200 mb-6">
-              Build applications through conversation
-            </p>
-          </div>
-
-          {/* Instructions */}
-          <div className="bg-slate-800/50 backdrop-blur-sm border border-blue-500/20 rounded-2xl p-8 shadow-xl mb-6">
-            <div className="flex items-start gap-4 mb-6">
-              <div className="flex-shrink-0 w-8 h-8 bg-blue-500 text-white rounded-lg flex items-center justify-center font-bold">
-                1
-              </div>
-              <div>
-                <h3 className="font-semibold text-white mb-1">Describe your idea</h3>
-                <p className="text-blue-200/80 text-sm">Use the chat panel on the left to tell the AI what you want to build</p>
-              </div>
-            </div>
-
-            <div className="flex items-start gap-4 mb-6">
-              <div className="flex-shrink-0 w-8 h-8 bg-blue-500 text-white rounded-lg flex items-center justify-center font-bold">
-                2
-              </div>
-              <div>
-                <h3 className="font-semibold text-white mb-1">Watch it build</h3>
-                <p className="text-blue-200/80 text-sm">Your app will appear in this preview as the AI generates the code</p>
-              </div>
-            </div>
-
-            <div className="flex items-start gap-4">
-              <div className="flex-shrink-0 w-8 h-8 bg-blue-500 text-white rounded-lg flex items-center justify-center font-bold">
-                3
-              </div>
-              <div>
-                <h3 className="font-semibold text-white mb-1">Refine and iterate</h3>
-                <p className="text-blue-200/80 text-sm">Continue the conversation to add features and make changes</p>
-              </div>
-            </div>
-          </div>
-
-          {/* Footer */}
-          <div className="text-center">
-            <p className="text-sm text-blue-300/60">
-              No coding required • Just describe what you want
-            </p>
-          </div>
+      {/* Hero */}
+      <section className="bg-gradient-to-br from-blue-600 to-indigo-600 text-white">
+        <div className="max-w-6xl mx-auto px-4 py-12">
+          <h1 className="text-3xl sm:text-5xl font-bold tracking-tight">Discover Sri Lanka, the authentic way</h1>
+          <p className="mt-3 text-white/90 max-w-2xl">Find verified guides, trusted local businesses, and hidden destinations—from Kandy to Ella and beyond.</p>
         </div>
-      </div>
+      </section>
+
+      {/* Content */}
+      {tab === 'discover' && <Discover />}
+      {tab === 'guides' && <Guides />}
+      {tab === 'businesses' && <Businesses />}
+      {tab === 'bookings' && <Bookings />}
+
+      {/* Footer */}
+      <footer className="border-t mt-12">
+        <div className="max-w-6xl mx-auto px-4 py-8 text-sm text-gray-600 flex flex-col sm:flex-row gap-2 sm:items-center justify-between">
+          <p>© {new Date().getFullYear()} Kandy LK</p>
+          <p>Early MVP — data may be sample only</p>
+        </div>
+      </footer>
+
+      {/* Small utility styles */}
+      <style>{`
+        .input { @apply px-3 py-2 border rounded-md bg-white focus:outline-none focus:ring-2 ring-blue-600; }
+        .btn-primary { @apply px-4 py-2 rounded-md bg-blue-600 text-white hover:bg-blue-700 transition-colors; }
+        .btn-secondary { @apply px-3 py-1.5 rounded-md bg-gray-900 text-white hover:bg-gray-800 text-sm; }
+      `}</style>
     </div>
   )
 }
